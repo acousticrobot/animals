@@ -9,7 +9,7 @@ const GameState = {
     this.load.image('arrow', 'assets/images/arrow.png')
     this.load.image('chicken', 'assets/images/chicken.png')
     this.load.image('pig', 'assets/images/pig.png')
-    this.load.image('sheep', 'assets/images/sheep_128.png')
+    this.load.image('sheep', 'assets/images/sheep.png')
   },
 
   // executed after everything is loaded
@@ -24,39 +24,39 @@ const GameState = {
     this.sheep = this.game.add.sprite(this.game.world.centerX, 230, 'sheep')
     this.sheep.anchor.setTo(0.5)
 
-    //left arrow
-    this.leftArrow = this.game.add.sprite(80, 120, 'arrow');
-    this.leftArrow.anchor.setTo(0.5);
-    this.leftArrow.scale.x = -1;
-    this.leftArrow.customParams = {direction: -1};
+    // left arrow
+    this.leftArrow = this.game.add.sprite(80, 120, 'arrow')
+    this.leftArrow.anchor.setTo(0.5)
+    this.leftArrow.scale.x = -1
+    this.leftArrow.customParams = { direction: -1 }
 
-    //left arrow allow user input
-    this.leftArrow.inputEnabled = true;
-    this.leftArrow.input.pixelPerfectClick = true;
-    this.leftArrow.events.onInputDown.add(this.switchAnimal, this);
+    // left arrow allow user input
+    this.leftArrow.inputEnabled = true
+    this.leftArrow.input.pixelPerfectClick = true
+    this.leftArrow.events.onInputDown.add(this.switchAnimal, this)
 
-    //right arrow
-    this.rightArrow = this.game.add.sprite(560, 120, 'arrow');
-    this.rightArrow.anchor.setTo(0.5);
-    this.rightArrow.customParams = {direction: 1};
+    // right arrow
+    this.rightArrow = this.game.add.sprite(560, 120, 'arrow')
+    this.rightArrow.anchor.setTo(0.5)
+    this.rightArrow.customParams = { direction: 1 }
 
-    //right arrow user input
-    this.rightArrow.inputEnabled = true;
-    this.rightArrow.input.pixelPerfectClick = true;
-    this.rightArrow.events.onInputDown.add(this.switchAnimal, this);
-
+    // right arrow user input
+    this.rightArrow.inputEnabled = true
+    this.rightArrow.input.pixelPerfectClick = true
+    this.rightArrow.events.onInputDown.add(this.switchAnimal, this)
   },
 
   // this is executed multiple times per second
   update() {
   },
 
-  switchAnimal(sprite, event) {
-    console.log('move animal')
-  },
-  animateAnimal(sprite, event) {
-    console.log('animate animal')
+  eventSwitchAnimal() {
+    // console.log('move animal')
   }
+
+  // animateAnimal(sprite, event) {
+  //   console.log('animate animal')
+  // }
 }
 
 // initiate the Phaser framework
