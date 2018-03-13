@@ -62,11 +62,10 @@ before you get to work you will surely want to check the config file. You could 
 In the config file you can specify which webfonts you want to include. In case you do not want to use webfonts simply leave the array empty
 
 ## Credits
-Big thanks to these great repos:
 
-https://github.com/belohlavek/phaser-es6-boilerplate
-
-https://github.com/cstuncsik/phaser-es6-demo
+Pig sound courtesy: https://freesound.org/people/josepharaoh99/sounds/352698/
+Sheep sound courtesy: https://freesound.org/people/Erdie/sounds/34538/
+Rooster sound courtesy: https://freesound.org/people/Sclolex/sounds/324210/
 
 ## Contributors
 

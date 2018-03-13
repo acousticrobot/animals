@@ -11,6 +11,10 @@ const GameState = {
     this.load.spritesheet('rooster', 'assets/images/rooster_spritesheet.png', 128, 128, 4)
     this.load.spritesheet('pig', 'assets/images/pig_spritesheet.png', 128, 128, 4)
     this.load.spritesheet('sheep', 'assets/images/sheep_spritesheet.png', 128, 128, 4)
+
+    this.load.audio('roosterSound', ['assets/audio/rooster.ogg', 'assets/audio/rooster.mp3'])
+    this.load.audio('pigSound', ['assets/audio/pig.ogg', 'assets/audio/pig.mp3'])
+    this.load.audio('sheepSound', ['assets/audio/sheep.ogg', 'assets/audio/sheep.mp3'])
   },
 
   // executed after everything is loaded
@@ -23,9 +27,9 @@ const GameState = {
     this.background = this.game.add.sprite(0, 0, 'background')
 
     const animalData = [
-      { key: 'rooster', text: 'ROOSTER' },
-      { key: 'pig', text: 'PIG' },
-      { key: 'sheep', text: 'SHEEP' }
+      { key: 'rooster', text: 'ROOSTER', audio: 'roosterSound' },
+      { key: 'pig', text: 'PIG', audio: 'pigSound' },
+      { key: 'sheep', text: 'SHEEP', audio: 'sheepSound' }
     ]
     this.animals = this.game.add.group()
 
@@ -33,11 +37,18 @@ const GameState = {
     // prepare each animal
     animalData.forEach((element) => {
       animal = this.animals.create(-1000, 230, element.key)
-      animal.customParams = { text: element.text }
+
+      animal.customParams = { text: element.text, sound: this.game.add.audio(element.audio) }
       animal.anchor.setTo(0.5)
       animal.inputEnabled = true
       animal.input.pixelPerfectClick = true
-      animal.animations.add('animate', [0, 1, 2, 2, 3, 0, 1, 2, 2, 3, 0], 10, false)
+      animal.animations.add(
+        'animate',
+        [
+          0, 1, 2, 2, 3, 0, 1, 2, 2, 3, 0, 0, 0,
+          0, 1, 2, 2, 3, 0, 1, 2, 2, 3, 0, 0, 0
+        ], 10, false
+      )
       animal.events.onInputDown.add(this.eventAnimateAnimal, this)
     })
 
@@ -87,6 +98,7 @@ const GameState = {
 
   eventAnimateAnimal(sprite) {
     sprite.play('animate')
+    sprite.customParams.sound.play()
   }
 }
 
